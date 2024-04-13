@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import csv
 import itertools
+import os
 
 app = Flask(__name__)
 
@@ -66,5 +67,3 @@ def display_data_d3():
 def display_creative_data_d3():
     return render_template("creative.html")
 
-
-app.run(host='0.0.0.0', port=80)
