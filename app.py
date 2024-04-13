@@ -6,12 +6,12 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/basic')
 def index():
     return 'Welcome to Fundamentals of Computer Science'
 
 
-@app.route('/basic')
+@app.route('/')
 def display_basic():
     with open('static/data/Kaggle_TwitterUSAirlineSentiment.csv', encoding='utf-8-sig') as csvfile:
         data = csv.reader(csvfile, delimiter=',')
