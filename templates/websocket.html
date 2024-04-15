@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitter US Airline Sentiment</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  </head>
+  <body>
+
+  <h1>Below is the Web Socket: Socket.IO in action</h1>
+
+  <div id="chat"></div>
+<input type="text" id="chat-input"> <button onclick="sendMessage()">Send</button>
+
+
+  <script>
+ function sendMessage () {
+     console.log(document.getElementById("chat-input").value)
+ }
+</script>
+  </body>
+</html>

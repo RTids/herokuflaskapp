@@ -67,3 +67,7 @@ def display_data_d3():
 def display_creative_data_d3():
     return render_template("creative.html")
 
+
+@app.route('/websocket')
+def display_websocket_example():
+    return render_template("websocket.html")
