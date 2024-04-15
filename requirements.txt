@@ -1,13 +1,13 @@
 click==8.1.7
 Flask==3.0.3
-gunicorn==21.2.0
+gunicorn
 itsdangerous==2.1.2
 Jinja2==3.1.3
 MarkupSafe==2.1.5
 setuptools==69.5.0
 Werkzeug==3.0.2
-Flask-SocketIO==5.3.6
-eventlet==0.36.1
+Flask-SocketIO
+eventlet
 Flask-Sockets==0.2.1
-gevent-websocket==0.10.1
+gevent-websocket
 greenlet==3.0.3
