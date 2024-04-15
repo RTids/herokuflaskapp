@@ -13,11 +13,6 @@
   <div id="chat"></div>
 <input type="text" id="chat-input"> <button onclick="sendMessage()">Send</button>
 
-  <script>
- function sendMessage () {
-     console.log(document.getElementById("chat-input").value)
- }
-</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
 
 <script>
@@ -28,7 +23,7 @@
 
  function sendMessage () {
      console.log(document.getElementById('chat-input').value)
-     socket.emit(message,document.getElementById('chat-input').value)
+     socket.emit('message',document.getElementById('chat-input').value)
  }
 
  socket.on("new_message", (data) => {
