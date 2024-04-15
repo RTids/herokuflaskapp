@@ -18,11 +18,14 @@
      console.log(document.getElementById("chat-input").value)
  }
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
 
 <script>
- var socket = io.connect()
+ var socket = io()
  console.log("Socket.IO connection established:", socket.connected);
+
+
+
  function sendMessage () {
      console.log(document.getElementById('chat-input').value)
      socket.emit(message,document.getElementById('chat-input').value)
