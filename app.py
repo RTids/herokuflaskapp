@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, redirect
 import csv
 import itertools
 import os
+from flask_socketio import SocketIO, send, emit
 
 app = Flask(__name__)
-
+socketio = SocketIO(app)
 
 @app.route('/')
 def index():
@@ -71,3 +72,10 @@ def display_creative_data_d3():
 @app.route('/websocket')
 def display_websocket_example():
     return render_template("websocket.html")
+
+
+@socketio.on("message")
+def handleMessage(data):
+    emit("new_message",data,broadcast=True)
+if __name__ == "__main__":
+    socketio.run(app, debug=True, port=5004)
