@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Twitter US Airline Sentiment</title>
+    <title>Websocket Test</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 
   </head>
@@ -19,12 +19,6 @@
  }
 </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-<script>
- var socket = io()
- function sendMessage () {
-     console.log(document.getElementById("chat-input").value)
- }
-</script>
 
 <script>
  var socket = io()
