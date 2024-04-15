@@ -7,6 +7,7 @@ from flask_socketio import SocketIO, send, emit
 app = Flask(__name__)
 socketio = SocketIO(app)
 
+
 @app.route('/')
 def index():
     return 'Welcome to Fundamentals of Computer Science'
@@ -76,7 +77,7 @@ def display_websocket_example():
 
 @socketio.on("message")
 def handleMessage(data):
-    emit("new_message",data,broadcast=True)
+    emit("new_message", data, broadcast=True)
 
 
 if __name__ == "__main__":
