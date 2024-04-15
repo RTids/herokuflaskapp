@@ -28,6 +28,7 @@
 
 <script>
  var socket = io()
+ console.log("Socket.IO connection established:", socket.connected);
  function sendMessage () {
      console.log(document.getElementById('chat-input').value)
      socket.emit(message,document.getElementById('chat-input').value)
