@@ -12,3 +12,4 @@ Flask-Sockets==0.2.1
 gevent-websocket
 greenlet==3.0.3
 Flask-Limiter
+Flask-Cors

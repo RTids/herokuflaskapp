@@ -6,6 +6,7 @@ from flask_socketio import SocketIO, send, emit
 from datetime import datetime, timedelta
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_cors import CORS
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -22,6 +23,9 @@ limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["10 per minute"]
 )
+
+# I am also enabling CORS for the /websocket route
+CORS(app, resources={r"/websocket": {"origins": "https://python-app-uni-81cd362ca023.herokuapp.com"}})
 
 
 @app.route('/')
@@ -102,7 +106,7 @@ def handleMessage(data):
     # Check if the message limit is exceeded
     if len(message_history) >= message_limit:
         if not limit_exceeded_flag:
-            emit("new_message", "Message limit exceeded", broadcast=True)
+            emit("new_message", "Message limit exceeded! Please wait 1 minute", broadcast=True)
             limit_exceeded_flag = True
     else:
         # Reset the limit exceeded flag if the limit is not exceeded
