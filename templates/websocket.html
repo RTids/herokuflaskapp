@@ -29,6 +29,7 @@
 
  socket.on("new_message", (data) => {
  document.getElementById("chat").innerHTML += "<br>" + data
+     console.log("Socket.IO connection established:", socket.connected)
 })
 </script>
 
