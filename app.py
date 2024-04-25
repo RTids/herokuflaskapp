@@ -3,19 +3,16 @@ import csv
 import itertools
 import os
 from flask_socketio import SocketIO, send, emit
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
+from datetime import datetime, timedelta
+
+# I initially wanted to use Flask-Limiter, but this was only for HTTP requests, and now Websockets, so I have
+# done a more manual approach to limit the amount of messages sent.
+message_history = []
+message_limit = 10
+message_expiry_time = timedelta(minutes=1)
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-
-# Here we set up the rate limiter to determine how many requests per minute
-# the websocket should handle
-limiter = Limiter(
-    app=app,
-    key_func=get_remote_address,
-    default_limits=["10 per minute"]
-)
 
 
 @app.route('/')
@@ -81,14 +78,25 @@ def display_creative_data_d3():
 
 
 @app.route('/websocket')
-@limiter.limit("10 per minute")
 def display_websocket_example():
     return render_template("websocket.html")
 
 
 @socketio.on("message")
 def handleMessage(data):
-    emit("new_message", data, broadcast=True)
+    global message_history
+
+    # Remove expired messages
+    now = datetime.now()
+    message_history = [msg for msg in message_history if now - msg["timestamp"] < message_expiry_time]
+
+    # Check if the message limit is exceeded
+    if len(message_history) >= message_limit:
+        emit("new_message", "Message limit exceeded", broadcast=True)
+    else:
+        # Add the current message to history
+        message_history.append({"data": data, "timestamp": now})
+        emit("new_message", data, broadcast=True)
 
 
 if __name__ == "__main__":
