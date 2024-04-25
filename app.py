@@ -9,7 +9,6 @@ from flask_limiter.util import get_remote_address
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-
 # Here we set up the rate limiter to determine how many requests per minute
 # the websocket should handle
 limiter = Limiter(
@@ -17,6 +16,8 @@ limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["10 per minute"]
 )
+
+print(get_remote_address())
 
 
 @app.route('/')
