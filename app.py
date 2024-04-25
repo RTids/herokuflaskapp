@@ -3,9 +3,20 @@ import csv
 import itertools
 import os
 from flask_socketio import SocketIO, send, emit
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+
+
+# Here we set up the rate limiter to determine how many requests per minute
+# the websocket should handle
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["10 per minute"]
+)
 
 
 @app.route('/')
@@ -71,6 +82,7 @@ def display_creative_data_d3():
 
 
 @app.route('/websocket')
+@limiter.limit("10 per minute")
 def display_websocket_example():
     return render_template("websocket.html")
 
