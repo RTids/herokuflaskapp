@@ -13,8 +13,8 @@ socketio = SocketIO(app)
 # Here we set up the rate limiter to determine how many requests per minute
 # the websocket should handle
 limiter = Limiter(
-    app,
-    key_func=get_remote_address,
+    get_remote_address,
+    app=app,
     default_limits=["10 per minute"]
 )
 
