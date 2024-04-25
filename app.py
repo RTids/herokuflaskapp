@@ -17,8 +17,6 @@ limiter = Limiter(
     default_limits=["10 per minute"]
 )
 
-print(get_remote_address())
-
 
 @app.route('/')
 def index():
