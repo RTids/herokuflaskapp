@@ -128,6 +128,7 @@ const pie1_svg = d3.select('#pie-chart1')
 const test_data = {a: 9, b: 20, c:30, d:8, e:12}
 
 const pie_colour = d3.scaleOrdinal()
+                    .domain(test_data)
                   .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
 
 // Compute the position of each group on the pie:
