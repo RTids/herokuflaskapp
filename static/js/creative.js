@@ -1,9 +1,6 @@
 
 d3.csv("/static/data/Kaggle_TwitterUSAirlineSentiment.csv")
   .then(function(data) {
-    // Your visualization code here
-    // This part should handle the data processing and visualization creation
-    // using the 'data' variable which contains the loaded CSV data
 
 
   // Initialize an object to store counts for each airline

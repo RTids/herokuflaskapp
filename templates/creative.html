@@ -8,29 +8,34 @@
 
   </head>
   <body>
-    <div id="page-wrap">
 
     <h1>
       Twitter US Airline Sentiment (using D3.js)
     </h1>
+        <div id="page-wrap">
+        <div class="bar-chart">
+            <p>This is a visualisation of the sentiment towards each airline, whether it be positive, negative or neutral.</p>
 
-    <p>This is a visualisation of the sentiment towards each airline, whether it be positive, negative or neutral.</p>
-
-        <div id="key">
-            <div class="positive key-wrapper">
-                <div class="pos key-box"></div>
-                <p>Positive</p>
+            <div id="key">
+                <div class="positive key-wrapper">
+                    <div class="pos key-box"></div>
+                    <p>Positive</p>
+                </div>
+                <div class="negative key-wrapper">
+                    <div class="neg key-box"></div>
+                    <p>Negative</p>
+                </div>
+                <div class="neutral key-wrapper">
+                    <div class="neut key-box"></div>
+                    <p>Neutral</p>
+                </div>
             </div>
-            <div class="negative key-wrapper">
-                <div class="neg key-box"></div>
-                <p>Negative</p>
-            </div>
-            <div class="neutral key-wrapper">
-                <div class="neut key-box"></div>
-                <p>Neutral</p>
-            </div>
+            <div id="chart"></div>
         </div>
-        <div id="chart"></div>
+
+        <div class="negative-reviews">
+            <h3>Reasons for negative reviews:</h3>
+        </div>
 
     <script src="/static/js/creative.js"></script>
 
