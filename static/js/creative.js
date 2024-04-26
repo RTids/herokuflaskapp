@@ -111,3 +111,42 @@ svg.selectAll(".barGroup")
     // Handle any errors that occur during data loading
     console.error("Error loading data:", error);
   });
+
+//Code for Pie Charts
+const pie_width = 200
+const pie_height = 200
+const pie_margin = 20
+const pie_radius = Math.min(pie_width, pie_height) / 2 - pie_margin
+
+const pie1_svg = d3.select('#pie_chart1')
+                    .append("svg")
+                    .attr("width", pie_width)
+                    .attr("height", pie_height)
+                    .append('g')
+                    .attr("transform", "translate(" + pie_width / 2 + "," + pie_height / 2 + ")")
+
+const test_data = {a: 9, b: 20, c:30, d:8, e:12}
+
+const pie_colour = d3.scaleOrdinal()
+                  .domain(test_data)
+                  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
+
+// Compute the position of each group on the pie:
+const pie1 = d3.pie()
+  .value(function(d) {return d.value; })
+const data_ready1 = pie1(d3.entries(test_data))
+
+// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+pie1_svg
+  .selectAll('whatever')
+  .data(data_ready1)
+  .enter()
+  .append('path')
+  .attr('d', d3.arc()
+    .innerRadius(0)
+    .outerRadius(pie_radius)
+  )
+  .attr('fill', function(d){ return(pie_colour(d.data.key)) })
+  .attr("stroke", "black")
+  .style("stroke-width", "2px")
+  .style("opacity", 0.7)
