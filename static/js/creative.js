@@ -118,30 +118,28 @@ const pie_height = 200
 const pie_margin = 20
 const pie_radius = Math.min(pie_width, pie_height) / 2 - pie_margin
 
-const pie1_svg = d3.select('#pie_chart1')
+const pie1_svg = d3.select('#pie-chart1')
                     .append("svg")
-                    .attr("width", pie_width)
-                    .attr("height", pie_height)
+                        .attr("width", pie_width)
+                        .attr("height", pie_height)
                     .append('g')
-                    .attr("transform", "translate(" + pie_width / 2 + "," + pie_height / 2 + ")")
+                        .attr("transform", "translate(" + pie_width / 2 + "," + pie_height / 2 + ")")
 
 const test_data = {a: 9, b: 20, c:30, d:8, e:12}
 
 const pie_colour = d3.scaleOrdinal()
-                  .domain(test_data)
                   .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
 
 // Compute the position of each group on the pie:
 const pie1 = d3.pie()
-  .value(function(d) {return d.value; })
-const data_ready1 = pie1(d3.entries(test_data))
+  .value(function(d) {return d[1]})
+const data_ready1 = pie1(Object.entries(test_data))
 
 // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
 pie1_svg
   .selectAll('whatever')
   .data(data_ready1)
-  .enter()
-  .append('path')
+  .join("path")
   .attr('d', d3.arc()
     .innerRadius(0)
     .outerRadius(pie_radius)
